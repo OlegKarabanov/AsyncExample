@@ -15,10 +15,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void buttonClick(View view){
+        Intent intent = null
         switch(view.getId()){  //привязывыаем реализацию онклик на кнопку
             case R.id.asynctask:
-                Intent intent = new Intent(this, AsyncTaskExample.class);
-                startActivity(intent); // вызываем интент
+                Intent = new Intent(this, AsyncTaskExample.class);
+                startActivity(intent);
+                break;
+            case R.id:thread:
+            Intent = new Intent(this, ThreadExample.class);
+                startActivity(intent);
+                break;
+            default:return;
         }
     }
 }
