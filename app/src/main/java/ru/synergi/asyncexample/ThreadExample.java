@@ -9,7 +9,17 @@ import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class ThreadExample extends AppCompatActivity {
+
+
+    ExecutorService service = Executors.newFixedThreadPool(3);
+
+
+
 
 
     int mCounter;
@@ -56,7 +66,7 @@ public class ThreadExample extends AppCompatActivity {
         Runnable runnable = new Runnable(){
             @Override
             public void run() {
-                Long endTime = System.currentTimeMillis() +20 * 1000;
+                Long endTime = System.currentTimeMillis() +20 * 100;
                 while (System.currentTimeMillis()< endTime){
                     synchronized (this){
                         try {
@@ -70,7 +80,11 @@ public class ThreadExample extends AppCompatActivity {
                 }
             }
         };
-        Thread thread = new Thread(runnable);
-        thread.start();
+//        Thread thread = new Thread(runnable);
+//        thread.start();
+
+       service.execute(runnable);
+
+
     }
 }
