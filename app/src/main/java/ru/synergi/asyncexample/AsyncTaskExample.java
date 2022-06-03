@@ -2,6 +2,7 @@ package ru.synergi.asyncexample;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 public class AsyncTaskExample extends AppCompatActivity {
@@ -11,21 +12,20 @@ public class AsyncTaskExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_async_task_example);
 
-        MyAsyncTask asyncTask = new MyAsyncTask();
-        asyncTask.execute();
+        MyAsyncTask asynctask = new MyAsyncTask();
+        asynctask.execute();
     }
 
 }
 
-class MyAsyncTask extends AsyncTask<String, Integer, Integer>{
-
+class MyAsyncTask extends AsyncTask<String, Integer, Integer> {
 
 
     @Override
-    protected Integer doInBackground(String... strings){
+    protected Integer doInBackground(String... strings) {
         int myProgress = 0;
-        publishProgress(myProgress);
-        int result = myProgress++;
+        onProgressUpdate(myProgress);
+        int result = myProgress;
         return result;
     }
 
@@ -37,6 +37,7 @@ class MyAsyncTask extends AsyncTask<String, Integer, Integer>{
 
     @Override
     protected void onPostExecute(Integer integer){
+
         super.onPostExecute(integer);
     }
 
